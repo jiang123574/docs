@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>利用Python进行数据分析 | ClegeA&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第 1 章 准备工作1.1 本书内容1.1.1 什么类型的数据1.2 为何利用 Python 进行数据分析1.2.1 Python作为胶水1.2.2 解决“双语言”难题1.2.3 为何不使用 Python1.3 重要的 Python库第 2 章第 3 章第 4 章第 5 章5.15.1.15.1.25.1.3 索引对象表5-2：一些索引对象的方法和属性    方法 描述    append 将额外">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用Python进行数据分析">
+<meta property="og:url" content="https://clegea.win/利用python进行数据分析/index.html">
+<meta property="og:site_name" content="ClegeA&#39;s blog">
+<meta property="og:description" content="第 1 章 准备工作1.1 本书内容1.1.1 什么类型的数据1.2 为何利用 Python 进行数据分析1.2.1 Python作为胶水1.2.2 解决“双语言”难题1.2.3 为何不使用 Python1.3 重要的 Python库第 2 章第 3 章第 4 章第 5 章5.15.1.15.1.25.1.3 索引对象表5-2：一些索引对象的方法和属性    方法 描述    append 将额外">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-24T13:10:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用Python进行数据分析">
+<meta name="twitter:description" content="第 1 章 准备工作1.1 本书内容1.1.1 什么类型的数据1.2 为何利用 Python 进行数据分析1.2.1 Python作为胶水1.2.2 解决“双语言”难题1.2.3 为何不使用 Python1.3 重要的 Python库第 2 章第 3 章第 4 章第 5 章5.15.1.15.1.25.1.3 索引对象表5-2：一些索引对象的方法和属性    方法 描述    append 将额外">
+  
+    <link rel="alternate" href="/atom.xml" title="ClegeA&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ClegeA&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://clegea.win"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-利用python进行数据分析" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/利用python进行数据分析/" class="article-date">
+  <time datetime="2019-08-10T06:15:42.000Z" itemprop="datePublished">2019-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      利用Python进行数据分析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="第-1-章-准备工作"><a href="#第-1-章-准备工作" class="headerlink" title="第 1 章 准备工作"></a>第 1 章 准备工作</h2><h3 id="1-1-本书内容"><a href="#1-1-本书内容" class="headerlink" title="1.1 本书内容"></a>1.1 本书内容</h3><h4 id="1-1-1-什么类型的数据"><a href="#1-1-1-什么类型的数据" class="headerlink" title="1.1.1 什么类型的数据"></a>1.1.1 什么类型的数据</h4><h3 id="1-2-为何利用-Python-进行数据分析"><a href="#1-2-为何利用-Python-进行数据分析" class="headerlink" title="1.2 为何利用 Python 进行数据分析"></a>1.2 为何利用 Python 进行数据分析</h3><h4 id="1-2-1-Python作为胶水"><a href="#1-2-1-Python作为胶水" class="headerlink" title="1.2.1 Python作为胶水"></a>1.2.1 Python作为胶水</h4><h4 id="1-2-2-解决“双语言”难题"><a href="#1-2-2-解决“双语言”难题" class="headerlink" title="1.2.2 解决“双语言”难题"></a>1.2.2 解决“双语言”难题</h4><h4 id="1-2-3-为何不使用-Python"><a href="#1-2-3-为何不使用-Python" class="headerlink" title="1.2.3 为何不使用 Python"></a>1.2.3 为何不使用 Python</h4><h3 id="1-3-重要的-Python库"><a href="#1-3-重要的-Python库" class="headerlink" title="1.3 重要的 Python库"></a>1.3 重要的 Python库</h3><h2 id="第-2-章"><a href="#第-2-章" class="headerlink" title="第 2 章"></a>第 2 章</h2><h2 id="第-3-章"><a href="#第-3-章" class="headerlink" title="第 3 章"></a>第 3 章</h2><h2 id="第-4-章"><a href="#第-4-章" class="headerlink" title="第 4 章"></a>第 4 章</h2><h2 id="第-5-章"><a href="#第-5-章" class="headerlink" title="第 5 章"></a>第 5 章</h2><h3 id="5-1"><a href="#5-1" class="headerlink" title="5.1"></a>5.1</h3><h4 id="5-1-1"><a href="#5-1-1" class="headerlink" title="5.1.1"></a>5.1.1</h4><h4 id="5-1-2"><a href="#5-1-2" class="headerlink" title="5.1.2"></a>5.1.2</h4><h4 id="5-1-3-索引对象"><a href="#5-1-3-索引对象" class="headerlink" title="5.1.3 索引对象"></a>5.1.3 索引对象</h4><p>表5-2：一些索引对象的方法和属性</p>
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">append</td>
+<td align="left">将额外的索引对象粘贴到原索引后，产生一个新的索引</td>
+</tr>
+<tr>
+<td align="left">difference</td>
+<td align="left">计算两个索引的差集</td>
+</tr>
+<tr>
+<td align="left">intersection</td>
+<td align="left">计算两个索引的交集</td>
+</tr>
+<tr>
+<td align="left">union</td>
+<td align="left">计算两个索引的并集</td>
+</tr>
+<tr>
+<td align="left">isin</td>
+<td align="left">计算表示每一个值是否在传值容器中的布尔数组</td>
+</tr>
+<tr>
+<td align="left">delete</td>
+<td align="left">键位置i的元素删除，并产生新的索引</td>
+</tr>
+<tr>
+<td align="left">drop</td>
+<td align="left">根据传参删除指定索引值，并产生新的索引</td>
+</tr>
+<tr>
+<td align="left">insert</td>
+<td align="left">在位置i插入元素，并产生新的索引</td>
+</tr>
+<tr>
+<td align="left">is_monotonic</td>
+<td align="left">如果索引序列递增则返回True</td>
+</tr>
+<tr>
+<td align="left">is_unique</td>
+<td align="left">如果索引序列唯一则返回True</td>
+</tr>
+<tr>
+<td align="left">unique</td>
+<td align="left">计算索引的唯一值序列</td>
+</tr>
+</tbody></table>
+<h2 id="第-6-章-数据载入、存储及文件格式"><a href="#第-6-章-数据载入、存储及文件格式" class="headerlink" title="第 6 章 数据载入、存储及文件格式"></a>第 6 章 数据载入、存储及文件格式</h2><h3 id="6-1-文本格式数据的读写"><a href="#6-1-文本格式数据的读写" class="headerlink" title="6.1 文本格式数据的读写"></a>6.1 文本格式数据的读写</h3><h4 id="6-1-1"><a href="#6-1-1" class="headerlink" title="6.1.1"></a>6.1.1</h4><h4 id="6-1-2"><a href="#6-1-2" class="headerlink" title="6.1.2"></a>6.1.2</h4><h4 id="6-1-3"><a href="#6-1-3" class="headerlink" title="6.1.3"></a>6.1.3</h4><h4 id="6-1-4"><a href="#6-1-4" class="headerlink" title="6.1.4"></a>6.1.4</h4><h4 id="6-1-5"><a href="#6-1-5" class="headerlink" title="6.1.5"></a>6.1.5</h4><h3 id="6-2-二进制格式"><a href="#6-2-二进制格式" class="headerlink" title="6.2 二进制格式"></a>6.2 二进制格式</h3><h4 id="6-2-1-使用-HDF5-格式"><a href="#6-2-1-使用-HDF5-格式" class="headerlink" title="6.2.1 使用 HDF5 格式"></a>6.2.1 使用 HDF5 格式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.to_hdf(<span class="string">'./x.h5'</span>,<span class="string">'key'</span>)</span><br><span class="line">pd.read_hdf(<span class="string">'./x.h5'</span>,<span class="string">'key'</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-2-2-读取Microsoft-Excel-文件"><a href="#6-2-2-读取Microsoft-Excel-文件" class="headerlink" title="6.2.2 读取Microsoft Excel 文件"></a>6.2.2 读取Microsoft Excel 文件</h4><p>excel操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">pandas.read_excel（io，sheet_name = <span class="number">0</span>，header = <span class="number">0</span>，names = <span class="literal">None</span>，index_col = <span class="literal">None</span>，usecols = <span class="literal">None</span>，squeeze = <span class="literal">False</span>,dtype = <span class="literal">None</span>, ...）</span><br><span class="line"><span class="comment">#io:文件路径</span></span><br><span class="line"><span class="comment">#sheet_name:sheet_name=0,sheet_name=“Sheet1”,sheet_name=[0,1,'Sheet5']</span></span><br><span class="line"><span class="comment">#header：指定作为列名的行,默认0，即取第一行的值为列名。数据为列名行以下的数据；若数据不含列名，则设定 header = None。</span></span><br><span class="line"><span class="comment">#names：默认为None，要使用的列名列表，如不包含标题行，应显示传递header=None。</span></span><br><span class="line"><span class="comment">#index_col：指定列为索引列，默认None列（0索引）用作DataFrame的行标签。</span></span><br><span class="line"><span class="comment">#usecols：int或list，默认为None。</span></span><br><span class="line"><span class="comment">##如果为None则解析所有列</span></span><br><span class="line"><span class="comment">##如果为int则表示要解析的最后一列</span></span><br><span class="line"><span class="comment">##如果为int列表则表示要解析的列号列表</span></span><br><span class="line"><span class="comment">##如果字符串则表示以逗号分隔的Excel列字母和列范围列表（例如“A：E”或“A，C，E：F”）。范围包括双方。</span></span><br><span class="line"><span class="comment">#squeeze：boolean，默认为False,如果解析的数据只包含一列，则返回一个Series。</span></span><br><span class="line"><span class="comment">#skiprows：省略指定行数的数据,从第一行开始。</span></span><br><span class="line"><span class="comment">#skipfooter：省略指定行数的数据，从尾部数的行开始。</span></span><br><span class="line"><span class="comment">#dtype:字典类型&#123;'列名1':数据类型，‘列名’:数据类型&#125;，设定指定列的数据类型。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-3-与Web-API-交互"><a href="#6-3-与Web-API-交互" class="headerlink" title="6.3 与Web API 交互"></a>6.3 与Web API 交互</h3><h3 id="6-4-与数据库交互"><a href="#6-4-与数据库交互" class="headerlink" title="6.4 与数据库交互"></a>6.4 与数据库交互</h3><p>数据库操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">engine=create_engine(<span class="string">"mysql+pymysql://root:password@127.0.0.1:3306/&lt;sqldata&gt;?charset=utf8"</span>,pool_timeout=<span class="number">30</span>) <span class="comment">#连接数据库  pool_timeout：连接超时 sqldata:数据库名称</span></span><br><span class="line">pd.read_sql(<span class="string">'select * from &lt;sqldata&gt;'</span>,engine,index_col=<span class="string">'a'</span>) <span class="comment">#读取数据库 index_col：索引列 &lt;sqldata&gt;:数据库表名</span></span><br><span class="line">con = engine.connect() <span class="comment">#创建数据库指针</span></span><br><span class="line">pd.to_sql(name=<span class="string">'sqldata'</span>, con=con, if_exists=<span class="string">'append'</span>, index=<span class="literal">False</span>)</span><br><span class="line"><span class="comment">#name:输出表名</span></span><br><span class="line"><span class="comment">#con: 数据库连接</span></span><br><span class="line"><span class="comment">#if_exists：操作方式（fail:若表存在，则不输出,replace：若表存在，覆盖原来表里的数据append：若表存在，将数据写到原表的后面）</span></span><br><span class="line"><span class="comment">#index:是否将df的index单独写到一列中(False,True)</span></span><br><span class="line"><span class="comment">#index_label:指定列作为df的index输出，此时index为True</span></span><br><span class="line"><span class="comment">#dtype: 指定列的输出到数据库中的数据类型。字典形式储存：&#123;column_name: sql_dtype&#125;。常见的数据类型有sqlalchemy.types.INTEGER(), sqlalchemy.types.NVARCHAR(),sqlalchemy.Datetime()等，具体数据类型可以参考http://docs.sqlalchemy.org/en/latest/core/type_basics.html#sql-standard-and-multiple-vendor-types</span></span><br><span class="line">engine.dispose() <span class="comment">#关闭连接</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-5"><a href="#6-5" class="headerlink" title="6.5"></a>6.5</h3><h2 id="第-7-章-数据清洗与准备"><a href="#第-7-章-数据清洗与准备" class="headerlink" title="第 7 章 数据清洗与准备"></a>第 7 章 数据清洗与准备</h2><h3 id="7-1-处理缺失值"><a href="#7-1-处理缺失值" class="headerlink" title="7.1 处理缺失值"></a>7.1 处理缺失值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.a.isnull() <span class="comment">#使用isnull 过滤缺失值</span></span><br></pre></td></tr></table></figure>
+
+<p>表7-1：NA处理方法</p>
+<table>
+<thead>
+<tr>
+<th align="left">函数名</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">dropna</td>
+<td align="left">根据每个标签的值是否是缺失数据来筛选轴标签，并根据允许丢失的数据量来确当阈值</td>
+</tr>
+<tr>
+<td align="left">fillna</td>
+<td align="left">用某些值填充缺失的数据或使用插值方法（如’ffill’或’bfill’）</td>
+</tr>
+<tr>
+<td align="left">isnull</td>
+<td align="left">返回表明哪些是缺失值的布尔值</td>
+</tr>
+<tr>
+<td align="left">notnull</td>
+<td align="left">isnull的反函数</td>
+</tr>
+</tbody></table>
+<h4 id="7-1-1-过滤缺失值"><a href="#7-1-1-过滤缺失值" class="headerlink" title="7.1.1 过滤缺失值"></a>7.1.1 过滤缺失值</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.dropna() <span class="comment">#默认删除包含缺失值的行 使用how='all'参数删除所有值均为NA的行，使用axis=1删除列，thresh参数可以设定允许缺失值的阈值</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="7-1-2-补全缺失值"><a href="#7-1-2-补全缺失值" class="headerlink" title="7.1.2 补全缺失值"></a>7.1.2 补全缺失值</h4><p>表7-2：fillna函数参数</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">value</td>
+<td align="left">标量值或字典型对象用于填充缺失值</td>
+</tr>
+<tr>
+<td align="left">method</td>
+<td align="left">插值方法，如果没有其它参数，默认是’ffill’</td>
+</tr>
+<tr>
+<td align="left">axis</td>
+<td align="left">需要填充的轴，默认axis=0</td>
+</tr>
+<tr>
+<td align="left">inplace</td>
+<td align="left">修改被调用的对象，而不是生成一个对象</td>
+</tr>
+<tr>
+<td align="left">limit</td>
+<td align="left">用于前向或者后向填充时最大的填充范围</td>
+</tr>
+</tbody></table>
+<h3 id="7-2-数据转换"><a href="#7-2-数据转换" class="headerlink" title="7.2 数据转换"></a>7.2 数据转换</h3><h4 id="7-2-1-删除重复值"><a href="#7-2-1-删除重复值" class="headerlink" title="7.2.1 删除重复值"></a>7.2.1 删除重复值</h4><h4 id="7-2-2-使用函数或映射进行数据转换"><a href="#7-2-2-使用函数或映射进行数据转换" class="headerlink" title="7.2.2 使用函数或映射进行数据转换"></a>7.2.2 使用函数或映射进行数据转换</h4><h2 id="第-8-章-数据规整：连接、联合与重塑"><a href="#第-8-章-数据规整：连接、联合与重塑" class="headerlink" title="第 8 章 数据规整：连接、联合与重塑"></a>第 8 章 数据规整：连接、联合与重塑</h2><h3 id="8-1"><a href="#8-1" class="headerlink" title="8.1"></a>8.1</h3><h4 id="8-1-1"><a href="#8-1-1" class="headerlink" title="8.1.1"></a>8.1.1</h4><h4 id="8-1-2-按层级进行汇总统计"><a href="#8-1-2-按层级进行汇总统计" class="headerlink" title="8.1.2 按层级进行汇总统计"></a>8.1.2 按层级进行汇总统计</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df.sum(level=<span class="number">0</span>) <span class="comment">#使用层级进行汇总</span></span><br><span class="line">df.sum(level=<span class="string">'索引名'</span>,axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-1-3-使用-DataFrame-的列进行索引"><a href="#8-1-3-使用-DataFrame-的列进行索引" class="headerlink" title="8.1.3 使用 DataFrame 的列进行索引"></a>8.1.3 使用 DataFrame 的列进行索引</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df.set_index(<span class="string">'A'</span>) <span class="comment">#使用A列作为索引</span></span><br><span class="line">df.set_index([<span class="string">'A'</span>,<span class="string">'c'</span>]) <span class="comment">#使用A,C列进行分层索引</span></span><br><span class="line"><span class="comment">#使用drop=False参数，可以使作为索引的列保留在DataFrame中</span></span><br><span class="line"><span class="comment">#reset_index是set_index的反函数</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-2-联合与合并数据"><a href="#8-2-联合与合并数据" class="headerlink" title="8.2 联合与合并数据"></a>8.2 联合与合并数据</h3><h4 id="8-2-1-数据库风格的-DataFrame-连接"><a href="#8-2-1-数据库风格的-DataFrame-连接" class="headerlink" title="8.2.1 数据库风格的 DataFrame 连接"></a>8.2.1 数据库风格的 DataFrame 连接</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(df1,df2,on=<span class="string">'key'</span>) <span class="comment">#可以分别指定列名left_on='lkey',right_on='rkey' 可使用参数how=</span></span><br></pre></td></tr></table></figure>
+
+<p>表8-1：how 参数的不同连接类型</p>
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="left">行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">‘inner’</td>
+<td align="left">只对两张表都有的键的交集进行联合</td>
+</tr>
+<tr>
+<td align="center">‘left’</td>
+<td align="left">对所有左边的键都进行联合</td>
+</tr>
+<tr>
+<td align="center">‘right’</td>
+<td align="left">对所有右表的键都进行联合</td>
+</tr>
+<tr>
+<td align="center">‘outer’</td>
+<td align="left">对两张表都有的键的并集进行联合</td>
+</tr>
+</tbody></table>
+<p>表8-2：merge函数参数</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">left</td>
+<td align="left">合并时操作中左边的DataFrame</td>
+</tr>
+<tr>
+<td align="left">right</td>
+<td align="left">合并时操作中右边的DataFrame</td>
+</tr>
+<tr>
+<td align="left">how</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">on</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">left_on</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">right_on</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">sort</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">suffixes</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">copy</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">indicator</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<h4 id="8-2-2-根据索引合并"><a href="#8-2-2-根据索引合并" class="headerlink" title="8.2.2 根据索引合并"></a>8.2.2 根据索引合并</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pd.merge(df1,df2,on=<span class="string">'key'</span>，right_index=<span class="literal">True</span>)</span><br><span class="line"><span class="comment">#可以分别指定列名left_on='lkey',right_on='rkey' 可使用参数how=</span></span><br><span class="line"><span class="comment">#可以传递left_index=True或tight_index=True(或者都传)来表示索引需要用来作为合并的键</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="8-2-3"><a href="#8-2-3" class="headerlink" title="8.2.3"></a>8.2.3</h4><h4 id="8-2-4"><a href="#8-2-4" class="headerlink" title="8.2.4"></a>8.2.4</h4><h2 id="第-9-章-绘图与可视化"><a href="#第-9-章-绘图与可视化" class="headerlink" title="第 9 章 绘图与可视化"></a>第 9 章 绘图与可视化</h2><h3 id="9-1-简明-matplotlib-API-入门"><a href="#9-1-简明-matplotlib-API-入门" class="headerlink" title="9.1 简明 matplotlib API 入门"></a>9.1 简明 matplotlib API 入门</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline <span class="comment">#用于在juputer notebook中显示图形</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="9-1-1-图片与子图"><a href="#9-1-1-图片与子图" class="headerlink" title="9.1.1 图片与子图"></a>9.1.1 图片与子图</h4><h4 id="9-1-2"><a href="#9-1-2" class="headerlink" title="9.1.2"></a>9.1.2</h4><h4 id="9-1-3"><a href="#9-1-3" class="headerlink" title="9.1.3"></a>9.1.3</h4><h4 id="9-1-4"><a href="#9-1-4" class="headerlink" title="9.1.4"></a>9.1.4</h4><h4 id="9-1-5-将图片保存到文件"><a href="#9-1-5-将图片保存到文件" class="headerlink" title="9.1.5 将图片保存到文件"></a>9.1.5 将图片保存到文件</h4><p>表9-2：figure.savefig选项</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">fname</td>
+<td align="left">包含文件路径或Python文件型对象的字符串。图片格式是从文件的扩展名中推断出来的（例如PDF格式的.pdf或PNG格式的.png格式）</td>
+</tr>
+<tr>
+<td align="left">dpi</td>
+<td align="left">每英寸点数的分辨率；默认为100，但可以配置</td>
+</tr>
+<tr>
+<td align="left">faceclor,edgecolor</td>
+<td align="left">子图之外的图形背景的颜色；默认情况下是’w’（白色）</td>
+</tr>
+<tr>
+<td align="left">format</td>
+<td align="left">文件格式(‘png’,’pdf’,’svg’,’ps’,’eps’……)</td>
+</tr>
+<tr>
+<td align="left">bbox_inches</td>
+<td align="left">要保存的图片范围；如果传递’tight’，将会去除掉图片周围空白的部分</td>
+</tr>
+</tbody></table>
+<h4 id="9-1-6"><a href="#9-1-6" class="headerlink" title="9.1.6"></a>9.1.6</h4><h3 id="9-2-使用-pandas-和-seaborn-绘图"><a href="#9-2-使用-pandas-和-seaborn-绘图" class="headerlink" title="9.2 使用 pandas 和 seaborn 绘图"></a>9.2 使用 pandas 和 seaborn 绘图</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://clegea.win/利用python进行数据分析/" data-id="cjzxw0jis0009c3gmo4sdxvn4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/pandas学习笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Pandas学习笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/编译openwrt/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">基于ProXmoX VE的虚拟化家庭服务器（篇五）—利用linux虚拟机编译lean源码openwrt</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/proxmox-ve/">proxmox ve</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/proxmox-ve/" style="font-size: 20px;">proxmox ve</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">一月 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/pandas学习笔记/">Pandas学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/利用python进行数据分析/">利用Python进行数据分析</a>
+          </li>
+        
+          <li>
+            <a href="/编译openwrt/">基于ProXmoX VE的虚拟化家庭服务器（篇五）—利用linux虚拟机编译lean源码openwrt</a>
+          </li>
+        
+          <li>
+            <a href="/创建linux虚拟机/">基于ProXmoX VE的虚拟化家庭服务器（篇四）—利用模板创建linux虚拟机</a>
+          </li>
+        
+          <li>
+            <a href="/软件推荐/">软件与工具推荐</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 ClegeA<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

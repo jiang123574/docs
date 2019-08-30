@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>基于ProXmoX VE的虚拟化家庭服务器（篇五）—利用linux虚拟机编译lean源码openwrt | ClegeA&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="上篇讲了如何使用模板创建一个低资源占用高效的linux虚拟机这篇我们讲一下如何利用这个虚拟机进行官方原版openwrt的编译，结合前段时间到手的新路由3，做一个简单的，支持802.11r的ap 创建非root用户由于openwrt不能使用root用户git和编译，首要任务是创建一个非root用户，用来进行git和编译首先，我们进入控制台打开root远程登录（确保更好的使用体验） 123456789">
+<meta name="keywords" content="proxmox ve">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于ProXmoX VE的虚拟化家庭服务器（篇五）—利用linux虚拟机编译lean源码openwrt">
+<meta property="og:url" content="https://clegea.win/编译openwrt/index.html">
+<meta property="og:site_name" content="ClegeA&#39;s blog">
+<meta property="og:description" content="上篇讲了如何使用模板创建一个低资源占用高效的linux虚拟机这篇我们讲一下如何利用这个虚拟机进行官方原版openwrt的编译，结合前段时间到手的新路由3，做一个简单的，支持802.11r的ap 创建非root用户由于openwrt不能使用root用户git和编译，首要任务是创建一个非root用户，用来进行git和编译首先，我们进入控制台打开root远程登录（确保更好的使用体验） 123456789">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://clegea.win/.win//Snipaste_2019-05-15_08-33-13.png">
+<meta property="og:updated_time" content="2019-08-10T13:45:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于ProXmoX VE的虚拟化家庭服务器（篇五）—利用linux虚拟机编译lean源码openwrt">
+<meta name="twitter:description" content="上篇讲了如何使用模板创建一个低资源占用高效的linux虚拟机这篇我们讲一下如何利用这个虚拟机进行官方原版openwrt的编译，结合前段时间到手的新路由3，做一个简单的，支持802.11r的ap 创建非root用户由于openwrt不能使用root用户git和编译，首要任务是创建一个非root用户，用来进行git和编译首先，我们进入控制台打开root远程登录（确保更好的使用体验） 123456789">
+<meta name="twitter:image" content="https://clegea.win/.win//Snipaste_2019-05-15_08-33-13.png">
+  
+    <link rel="alternate" href="/atom.xml" title="ClegeA&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ClegeA&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://clegea.win"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-编译openwrt" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/编译openwrt/" class="article-date">
+  <time datetime="2019-08-08T01:03:35.000Z" itemprop="datePublished">2019-08-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于ProXmoX VE的虚拟化家庭服务器（篇五）—利用linux虚拟机编译lean源码openwrt
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上篇讲了如何使用模板创建一个低资源占用高效的linux虚拟机<br>这篇我们讲一下如何利用这个虚拟机进行官方原版openwrt的编译，结合前段时间到手的新路由3，做一个简单的，支持802.11r的ap</p>
+<h2 id="创建非root用户"><a href="#创建非root用户" class="headerlink" title="创建非root用户"></a>创建非root用户</h2><p>由于openwrt不能使用root用户git和编译，首要任务是创建一个非root用户，用来进行git和编译<br>首先，我们进入控制台打开root远程登录（确保更好的使用体验）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/ssh/sshd_config  </span><br><span class="line">找到下面相关配置：</span><br><span class="line"><span class="comment"># Authentication:  </span></span><br><span class="line"><span class="comment">#LoginGraceTime 120  </span></span><br><span class="line"><span class="comment">#PermitRootLogin prohibit-password  </span></span><br><span class="line"><span class="comment">#StrictModes yes  </span></span><br><span class="line">更改为：</span><br><span class="line"><span class="comment"># Authentication:  </span></span><br><span class="line"><span class="comment">#LoginGraceTime 120 </span></span><br><span class="line">PermitRootLogin yes  </span><br><span class="line"><span class="comment">#StrictModes yes</span></span><br></pre></td></tr></table></figure>
+
+<p>保存退出<br>重启ubuntu</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<p>然后就可以使用shell工具远程登录ubuntu虚拟机了<br>怎么登录我就不细说了，win下用putty或者xshel，我是mac，直接用终端登录<br>查看一下时间</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date</span><br></pre></td></tr></table></figure>
+
+<p>发现时间不对，是由于时区的缘故，我们使用以下命令把时区设置到上海</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timedatectl <span class="built_in">set</span>-timezone Asia/Shanghai</span><br></pre></td></tr></table></figure>
+
+<p>重新查看一下时间，已经正确<br>把源地址更换到国内</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/apt/sources.list</span><br><span class="line"><span class="comment">#把</span></span><br><span class="line">deb http://archive.ubuntu.com/ubuntu cosmic main restricted universe multiverse</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu cosmic-updates main restricted universe multiverse</span><br><span class="line">deb http://archive.ubuntu.com/ubuntu cosmic-security main restricted universe multiverse</span><br><span class="line"><span class="comment">#更换为</span></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu cosmic main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu cosmic-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu cosmic-security main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+
+<p>更新一下系统</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update &amp;&amp; sudo apt-get upgrade -y</span><br></pre></td></tr></table></figure>
+
+<p>创建用户</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser x <span class="comment">#创建一个叫做x的用户,会要求你输入密码，然后填一些资料，资料可以直接会车跳过</span></span><br></pre></td></tr></table></figure>
+
+<p>赋予新用户root权限</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/sudoers <span class="comment">#打开文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#在  root    ALL=(ALL:ALL) ALL 下面添加</span></span><br><span class="line">x    ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
+
+<p>保存退出，然后重启ubuntu,使用新用户登录</p>
+<h2 id="编译openwrt"><a href="#编译openwrt" class="headerlink" title="编译openwrt"></a>编译openwrt</h2><p>上回我们说编译原版openwrt，考虑了一下，还是教大家用lean的源码进行编译，因为功能更多更全，官方原版的只要换git地址就能一样编译。<br>首先我们使用shell工具登录ubuntu,推荐使用xsell和putty。<br>首先我们确保自己使用新建的用户登录，然后回到home目录下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint</span><br><span class="line"><span class="comment">#安装依赖</span></span><br><span class="line"><span class="built_in">cd</span> <span class="comment">#回到home目录</span></span><br></pre></td></tr></table></figure>
+
+<p><a href="https://github.com/coolsnowwolf/lede" target="_blank" rel="noopener">Lean源码地址</a><br>下载git包（可能速度会比较慢，建议出国）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/coolsnowwolf/lede.git <span class="comment">#如果要编译官方openwrt 地址换成 https://www.github.com/openwrt/openwrt</span></span><br></pre></td></tr></table></figure>
+
+<p>下载完成后会在</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/home/x/lede</span><br></pre></td></tr></table></figure>
+
+<p>目录下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/x/lede</span><br></pre></td></tr></table></figure>
+
+<p>源码插件(脚本等)更新并安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./scripts/feeds update -a </span><br><span class="line">./scripts/feeds install -a</span><br></pre></td></tr></table></figure>
+
+<p>输入<code>make menuconfig</code>进行配置编辑<br>我是新路由3<br>配置按下图设置，其他软件包在Luci→Applications中设置<br><img src="/.win//Snipaste_2019-05-15_08-33-13.png" alt="配置"><br>插件的一些说明</p>
+<blockquote>
+<p>LuCI    Applications    luci-app-accesscontrol    访问时间控制<br>LuCI    Applications    luci-app-adblock    ADB广告过滤<br>LuCI    Applications    luci-app-adbyby-plus    广告屏蔽大师Plus +<br>LuCI    Applications    luci-app-advanced-reboot    高级重启<br>LuCI    Applications    luci-app-ahcp    支持AHCPd<br>LuCI    Applications    luci-app-aliddns    阿里DDNS客户端<br>LuCI    Applications    luci-app-amule    aMule是一个跨平台的ED2K/KAD客户端  P2P电驴下载<br>LuCI    Applications    luci-app-aria2    Aria2下载<br>LuCI    Applications    luci-app-arpbind    IP/MAC绑定<br>LuCI    Applications    luci-app-asterisk    支持Asterisk电话服务器<br>LuCI    Applications    luci-app-attendedsysupgrade    固件更新升级相关<br>LuCI    Applications    luci-app-autoreboot    支持计划重启<br>LuCI    Applications    luci-app-bcp38    BCP38网络入口过滤(不确定)<br>LuCI    Applications    luci-app-bird4    Bird4服务(未知)<br>LuCI    Applications    luci-app-bird6    Bird6服务(未知)<br>LuCI    Applications    luci-app-bmx6    BMX6路由协议<br>LuCI    Applications    luci-app-bmx7    BMX7路由协议<br>LuCI    Applications    luci-app-cjdns    加密IPV6网络相关<br>LuCI    Applications    luci-app-caldav    联系人<br>LuCI    Applications    luci-app-clamav    ClamAV杀毒软件<br>LuCI    Applications    luci-app-commands    Shell命令模块<br>LuCI    Applications    luci-app-cshark    CloudShark捕获工具<br>LuCI    Applications    luci-app-ddns    动态域名 DNS<br>LuCI    Applications    luci-app-diag-core    core诊断工具<br>LuCI    Applications    luci-app-dnscrypt-proxy    DNSCrypt解决DNS污染<br>LuCI    Applications    luci-app-dnsforwarder    DNSForwarder防DNS污染<br>LuCI    Applications    luci-app-dnspod    DNSPod<br>LuCI    Applications    luci-app-dump1090    民航无线频率(不确定)<br>LuCI    Applications    luci-app-dynapoint    DynaPoint(未知)<br>LuCI    Applications    luci-app-e2guardian    Web内容过滤器<br>LuCI    Applications    luci-app-filetransfer    文件传输<br>LuCI    Applications    luci-app-firewall    添加防火墙<br>LuCI    Applications    luci-app-freifunk-diagnostics    freifunk组件 诊断(未知)<br>LuCI    Applications    luci-app-freifunk-policyrouting    freifunk组件 策略路由(未知)<br>LuCI    Applications    luci-app-freifunk-widgets    freifunk组件 Widgets(未知)<br>LuCI    Applications    luci-app-frpc    内网穿透 Frp<br>LuCI    Applications    luci-app-fwknopd    Firewall Knock Operator服务器<br>LuCI    Applications    luci-app-guest-wifi    WiFi访客网络<br>LuCI    Applications    luci-app-hd-idle    硬盘休眠<br>LuCI    Applications    luci-app-hnet    Homenet Status家庭网络控制协议<br>LuCI    Applications    luci-app-ipsec-vpnd    VPN服务器 IPSec<br>LuCI    Applications    luci-app-lxc    LXC容器管理<br>LuCI    Applications    luci-app-meshwizard    网络设置向导<br>LuCI    Applications    luci-app-minidlna    完全兼容DLNA / UPnP-AV客户端的服务器软件<br>LuCI    Applications    luci-app-mjpg-streamer    兼容Linux-UVC的摄像头程序<br>LuCI    Applications    luci-app-mwan3    MWAN负载均衡<br>LuCI    Applications    luci-app-mwan3helper    MWAN3分流助手<br>LuCI    Applications    luci-app-n2n_v2    N2N 内网穿透 N2N v2 VPN服务<br>LuCI    Applications    luci-app-nlbwmon    网络带宽监视器<br>LuCI    Applications    luci-app-noddos    NodDOS Clients 阻止DDoS攻击<br>LuCI    Applications    luci-app-ntpc    NTP时间同步服务器<br>LuCI    Applications    luci-app-ocserv    OpenConnect VPN服务<br>LuCI    Applications    luci-app-olsr    OLSR配置和状态模块<br>LuCI    Applications    luci-app-olsr-services    OLSR服务器<br>LuCI    Applications    luci-app-olsr-viz    OLSR可视化<br>LuCI    Applications    luci-app-openvpn    OpenVPN客户端<br>LuCI    Applications    luci-app-openvpn-server    易于使用的 OpenVPN 服务器 Web-UI<br>LuCI    Applications    luci-app-p910nd    打印服务器模块<br>LuCI    Applications    luci-app-pagekitec    Pagekite 内网穿透客户端<br>LuCI    Applications    luci-app-polipo    Polipo 是一个小型且快速的网页缓存代理。<br>LuCI    Applications    luci-app-pppoe-relay    PPPoE NAT穿透 点对点协议（PPP）<br>LuCI    Applications    luci-app-pptp-server    VPN服务器 PPTP<br>LuCI    Applications    luci-app-privoxy    Privoxy网络代理（带过滤无缓存）<br>LuCI    Applications    luci-app-qos    流量服务质量(QoS)流控<br>LuCI    Applications    luci-app-radicale    CalDAV/CardDAV同步工具<br>LuCI    Applications    luci-app-ramfree    释放内存<br>LuCI    Applications    luci-app-rp-pppoe-server    Roaring Penguin PPPoE Server 服务器<br>LuCI    Applications    luci-app-samba    网络共享(samba)<br>LuCI    Applications    luci-app-samba4    网络共享(samba4)<br>LuCI    Applications    luci-app-sfe    Turbo ACC网络加速(开启Fast Path转发加速)<br>LuCI    Applications    luci-app-shadowsocks-libev    SS-libev服务端<br>LuCI    Applications    luci-app-shairplay    支持AirPlay功能<br>LuCI    Applications    luci-app-siitwizard    SIIT配置向导  SIIT-Wizzard<br>LuCI    Applications    luci-app-simple-adblock    简单的广告拦截<br>LuCI    Applications    luci-app-splash    Client-Splash是无线MESH网络的一个热点认证系统<br>LuCI    Applications    luci-app-sqm    流量智能队列管理(QOS)<br>LuCI    Applications    luci-app-squid    Squid代理服务器<br>LuCI    Applications    luci-app-ssr-plus    出国<br>        luci-app-ssr-plus    Include Shadowsocks New Versiong    新SS代理<br>        Include V2ray    V2Ray透明代理<br>        Include Kcptun    Kcptun代理<br>        Include ShadowsocksR Server    出国<br>        Include ShadowsocksR Socks and Tunnel    SSR代理<br>LuCI    Applications    luci-app-ssr-pro    出国<br>LuCI    Applications    luci-app-ssrserver-python    ShadowsocksR Python服务器<br>LuCI    Applications    luci-app-statistics    流量监控工具<br>LuCI    Applications    luci-app-syncdial    多拨虚拟WAN(原macvlan)<br>LuCI    Applications    luci-app-tinyproxy    Tinyproxy是 HTTP(S)代理服务器<br>LuCI    Applications    luci-app-transmission    BT下载工具<br>LuCI    Applications    luci-app-travelmate    旅行路由器<br>LuCI    Applications    luci-app-ttyd    网页终端命令行<br>LuCI    Applications    luci-app-udpxy    udpxy做组播服务器<br>LuCI    Applications    luci-app-uhttpd    uHTTPd Web服务器<br>LuCI    Applications    luci-app-unbound    Unbound DNS解析器<br>LuCI    Applications    luci-app-upnp    通用即插即用UPnP(端口自动转发)<br>LuCI    Applications    luci-app-usb-printer    USB 打印服务器<br>LuCI    Applications    luci-app-v2ray-pro    V2Ray透明代理<br>LuCI    Applications    luci-app-vlmcsd    KMS服务器（激活工具）<br>LuCI    Applications    luci-app-vnstat    vnStat网络监控（图表）<br>LuCI    Applications    luci-app-vpnbypass    VPN BypassWebUI  绕过VPN设置<br>LuCI    Applications    luci-app-vsftpd    FTP服务器<br>LuCI    Applications    luci-app-watchcat    断网检测功能与定时重启<br>LuCI    Applications    luci-app-webadmin    Web管理<br>LuCI    Applications    luci-app-wifischedule    WiFi 计划<br>LuCI    Applications    luci-app-wireguard    VPN服务器 WireGuard状态<br>LuCI    Applications    luci-app-wireless-regdb    WiFi无线<br>LuCI    Applications    luci-app-wol    WOL网络唤醒<br>LuCI    Applications    luci-app-wrtbwmon    实时流量监测<br>LuCI    Applications    luci-app-xlnetacc    迅雷快鸟<br>LuCI    Applications    luci-app-zerotier    内网穿透 ZeroTier</p>
+</blockquote>
+<p>配置完成后按几次ESC退出  最后输入Y确认保存配置<br>然后输入<br><code>make  download</code><br>进行插件包的预下载，时间会比较长，建议出国<br>下载完成后输入</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -j1 V=s <span class="comment">#-j1 后面是线程数。第一次编译推荐用单线程</span></span><br></pre></td></tr></table></figure>
+
+<p>然后等待编译完成即可<br>编译完成后的固件会在<code>/home/x/lede/bin/targets</code>下的一个文件夹里，可使用winscp等工具下载下来</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://clegea.win/编译openwrt/" data-id="cjzxw0jjk000gc3gmdx7tp2ll" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/proxmox-ve/">proxmox ve</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/利用python进行数据分析/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          利用Python进行数据分析
+        
+      </div>
+    </a>
+  
+  
+    <a href="/创建linux虚拟机/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">基于ProXmoX VE的虚拟化家庭服务器（篇四）—利用模板创建linux虚拟机</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/proxmox-ve/">proxmox ve</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/proxmox-ve/" style="font-size: 20px;">proxmox ve</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">一月 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/pandas学习笔记/">Pandas学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/利用python进行数据分析/">利用Python进行数据分析</a>
+          </li>
+        
+          <li>
+            <a href="/编译openwrt/">基于ProXmoX VE的虚拟化家庭服务器（篇五）—利用linux虚拟机编译lean源码openwrt</a>
+          </li>
+        
+          <li>
+            <a href="/创建linux虚拟机/">基于ProXmoX VE的虚拟化家庭服务器（篇四）—利用模板创建linux虚拟机</a>
+          </li>
+        
+          <li>
+            <a href="/软件推荐/">软件与工具推荐</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 ClegeA<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

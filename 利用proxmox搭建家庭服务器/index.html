@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>利用proxmox ve 搭建家庭服务器 | ClegeA&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ProXmoX VE 介绍Proxmox VE是一款套开源的虚拟化管理软件，用户可通过网页的方式来管理服务器上使用 kvm 以及 lxc 技术运行的虚拟机。同时提供了一些先进功能的支持，如集群、HA等。PVE虽然是开源，却是由一个商业公司在运营、更新以及维护。基础安装完工 ProXmoX VE 安装基础准备 16G以上U盘一个(非必须，这个U盘是用来安装PROXMOX的，也可以直接装硬盘上，GEN">
+<meta name="keywords" content="proxmox ve">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用proxmox ve 搭建家庭服务器">
+<meta property="og:url" content="https://clegea.win/利用proxmox搭建家庭服务器/index.html">
+<meta property="og:site_name" content="ClegeA&#39;s blog">
+<meta property="og:description" content="ProXmoX VE 介绍Proxmox VE是一款套开源的虚拟化管理软件，用户可通过网页的方式来管理服务器上使用 kvm 以及 lxc 技术运行的虚拟机。同时提供了一些先进功能的支持，如集群、HA等。PVE虽然是开源，却是由一个商业公司在运营、更新以及维护。基础安装完工 ProXmoX VE 安装基础准备 16G以上U盘一个(非必须，这个U盘是用来安装PROXMOX的，也可以直接装硬盘上，GEN">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/1.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/2.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/3.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/4.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/5.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/6.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/7.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/8.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/9.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/10.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/11.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/12.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/13.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/14.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/15.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/16.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/17.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/18.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/19.png">
+<meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/20.png">
+<meta property="og:updated_time" content="2019-08-10T13:45:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用proxmox ve 搭建家庭服务器">
+<meta name="twitter:description" content="ProXmoX VE 介绍Proxmox VE是一款套开源的虚拟化管理软件，用户可通过网页的方式来管理服务器上使用 kvm 以及 lxc 技术运行的虚拟机。同时提供了一些先进功能的支持，如集群、HA等。PVE虽然是开源，却是由一个商业公司在运营、更新以及维护。基础安装完工 ProXmoX VE 安装基础准备 16G以上U盘一个(非必须，这个U盘是用来安装PROXMOX的，也可以直接装硬盘上，GEN">
+<meta name="twitter:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="ClegeA&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ClegeA&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://clegea.win"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-利用proxmox搭建家庭服务器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/利用proxmox搭建家庭服务器/" class="article-date">
+  <time datetime="2019-07-27T06:08:30.000Z" itemprop="datePublished">2019-07-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      利用proxmox ve 搭建家庭服务器
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="ProXmoX-VE-介绍"><a href="#ProXmoX-VE-介绍" class="headerlink" title="ProXmoX VE 介绍"></a>ProXmoX VE 介绍</h2><p>Proxmox VE是一款套开源的虚拟化管理软件，用户可通过网页的方式来管理服务器上使用 kvm 以及 lxc 技术运行的虚拟机。同时提供了一些先进功能的支持，如集群、HA等。<br>PVE虽然是开源，却是由一个商业公司在运营、更新以及维护。<br>基础安装完工</p>
+<h2 id="ProXmoX-VE-安装"><a href="#ProXmoX-VE-安装" class="headerlink" title="ProXmoX VE 安装"></a>ProXmoX VE 安装</h2><h3 id="基础准备"><a href="#基础准备" class="headerlink" title="基础准备"></a>基础准备</h3><ol>
+<li>16G以上U盘一个(非必须，这个U盘是用来安装PROXMOX的，也可以直接装硬盘上，GEN8比较特殊，使用U盘引导比较方便，所以我安装在U盘上)；4G以上U盘一个；</li>
+<li>支持虚拟化技术的CPU；</li>
+<li>如果要虚拟软路由，需要有2个网口以上，最好千兆。</li>
+</ol>
+<h3 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h3><p>首先去proxmox下载安装包，目前最新版本是5.2-1，推荐使用种子下载，速度会比较快，下载完成后务必使用使用工具进行SHA256校验，防止下载错误<br>然后使用软碟通或者rufus之类的工具把下载的ISO文件刻录进4G的U盘（本人使用GEN8的ILO4远程安装，有GEN8的朋友应该知道咋弄）。<br>接着把4GU盘和16GU盘插入电脑，BIOS中开启虚拟化支持（具体方法百度，BIOS太多，我就不放图了），一个网口接入路由，使用4GU盘引导启动很快就会进入安装界面。<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/1.png" alt="enter image description here"><br>此处选择第一项回车，稍微等待一会，进入下图界面<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/2.png" alt="enter image description here"><br>选择 I agree<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/3.png" alt="enter image description here"><br>这里选择你要安装的的硬盘或者U盘，选定后点击Next<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/4.png" alt="enter image description here"><br>这里一般会默认china，如果没有那就输入china，其他默认，点击Next<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/5.png" alt="enter image description here"><br>输入两遍管理密码并输入邮箱，点击Next<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/6.png" alt="enter image description here"><br>这里注意，查看一下是不是你局域网的网段，如果不是，很可能和路由之间网络不通，另外，Hostname这项的格式需为<em>.</em>，默认的是无法下一步的，我这里使用PVE.LEN，点击next，等待安装完成<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/7.png" alt="enter image description here"><br>出现如上界面时，说明安装已经完成，点击reboot，重启过程中拔掉U盘，然后设置为你安装的U盘或者硬盘启动，等待重启完成。<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/8.png" alt="enter image description here"><br>出现如上界面时说明安装完成了,用另外一台电脑在浏览器中输入上面的地址进行访问<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/9.png" alt="enter image description here"><br>language选择chinese就可以中文访问啦，用户名输入root，密码为刚才安装时候输的两遍管理密码</p>
+<h2 id="ProXmoX-VE-初始配置"><a href="#ProXmoX-VE-初始配置" class="headerlink" title="ProXmoX VE 初始配置"></a>ProXmoX VE 初始配置</h2><p><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/10.png" alt="enter image description here"></p>
+<p>由于proxmox一些功能是需要付费订阅的，虽然可以免费使用，但是每次登陆时候都会弹出如上让你订阅的通知，比较烦，我们这里通过技术手段把它屏蔽掉。<br>首先点击确定把它关掉，然后通过winscp打开以下文件 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/11.png" alt="enter image description here"><br>或者直接在web界面的shell中使用vi、nano等工具编辑找到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (data.status!==&apos;Active&apos;)</span><br></pre></td></tr></table></figure>
+
+<p>替换为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (false)</span><br></pre></td></tr></table></figure>
+
+<p>这条位置比较靠后，大约在800行，替换完成后保存文件，注销登陆，清理浏览器缓存，再次登陆，发现已经不再弹窗让你订阅啦。<br>接下来下来我们更新一下proxomx的软件，proxmox的底层毕竟是个debian系统，刚安装还是要更新一下的，在shell中输入aptupdate &amp;&amp; apt dist-upgrade，回车，发现报错无法更新，查看官方文档发现需要更改一些设置，在shell输入</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -f /etc/apt/sources.list.d/pve-enterprise.list <span class="comment">#移除原更新原地址</span></span><br></pre></td></tr></table></figure>
+
+<p>添加新的原地址</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"deb http://download.proxmox.com/debian/pve stretch pve-no-subscription"</span> &gt; /etc/apt/sources.list.d/pve-install-repo.list</span><br></pre></td></tr></table></figure>
+
+<p>下载秘钥</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.proxmox.com/debian/proxmox-ve-release-5.x.gpg -O /etc/apt/trusted.gpg.d/proxmox-ve-release-5.x.gpg</span><br></pre></td></tr></table></figure>
+
+<p>更新</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt update &amp;&amp; apt dist-upgrade</span><br></pre></td></tr></table></figure>
+
+<p>等待更新完成，输入 </p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<p>重启服务器</p>
+<h2 id="ProXmoX-VE-磁盘映射"><a href="#ProXmoX-VE-磁盘映射" class="headerlink" title="ProXmoX VE 磁盘映射"></a>ProXmoX VE 磁盘映射</h2><p>如果你的proxmox是直接安装在硬盘上的，那已经可以正常使用了，如果你和我一样是安装在U盘的，因为U盘空间比较小，需要弄个硬盘用来安装虚拟机<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/12.png" alt="enter image description here"><br>在磁盘中看下哪个是你要挂载的硬盘，，我这里需要挂载的设备目录为/dev/sdb<br>在shell中输入</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /mnt/sdb</span><br></pre></td></tr></table></figure>
+
+<p>创建sdb文件夹用来给磁盘挂载<br>输入fdisk /dev/sdb管理这个硬盘，给它分区<br>输入n新建分区<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/13.png" alt="enter image description here"><br>输入p建立主分区<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/14.png" alt="enter image description here"><br>输入1创建一个分区<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/15.png" alt="enter image description here"><br>这里是让输入这个分区的扇区起始位置，我们选择默认，直接回车<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/16.png" alt="enter image description here"><br>分区的扇区结束位置，默认，直接回车，到此就分区完成了，我们输入p查看一下<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/17.png" alt="enter image description here"><br>分区已经完成，目录为/dev/sdb1<br>输入w，保存并退出fdisk工具<br>输入</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs -t ext4 /dev/sdb1</span><br></pre></td></tr></table></figure>
+
+<p>格式化一下<br>输入</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/sdb1 /mnt/sdb</span><br></pre></td></tr></table></figure>
+
+<p>进行挂载<br>为了使proxmox可以开机自动挂载<br>我们输入</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/fstab</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">编辑一下这个文件，在最后追加</span><br><span class="line">```sh</span><br><span class="line">/dev/sdb1 /mnt/sdb ext4 defaults 0 0</span><br></pre></td></tr></table></figure>
+
+<p>保存退出<br>这样就不用每次开机mount了<br>然后依次点击数据中心-存储-添加-目录<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/18.png" alt="enter image description here"><br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/19.png" alt="enter image description here"><br>ID随意，目录输入刚才挂载的目录，内容都选上，点添加，<br>最后点OS查看一下是否正常识别<br><img src="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/20.png" alt="enter image description here"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://clegea.win/利用proxmox搭建家庭服务器/" data-id="cjzxw0jio0005c3gm7juka287" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/proxmox-ve/">proxmox ve</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/利用hexo+github+coding架设个人博客/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          利用hexo+github+coding（腾讯云开发平台）架设个人博客
+        
+      </div>
+    </a>
+  
+  
+    <a href="/蚂蚁/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">蚂蚁</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/proxmox-ve/">proxmox ve</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/proxmox-ve/" style="font-size: 20px;">proxmox ve</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/1970/01/">一月 1970</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/pandas学习笔记/">Pandas学习笔记</a>
+          </li>
+        
+          <li>
+            <a href="/利用python进行数据分析/">利用Python进行数据分析</a>
+          </li>
+        
+          <li>
+            <a href="/编译openwrt/">基于ProXmoX VE的虚拟化家庭服务器（篇五）—利用linux虚拟机编译lean源码openwrt</a>
+          </li>
+        
+          <li>
+            <a href="/创建linux虚拟机/">基于ProXmoX VE的虚拟化家庭服务器（篇四）—利用模板创建linux虚拟机</a>
+          </li>
+        
+          <li>
+            <a href="/软件推荐/">软件与工具推荐</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 ClegeA<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
