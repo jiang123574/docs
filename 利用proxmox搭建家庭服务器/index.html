@@ -25,10 +25,10 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.4.0',
     exturl: false,
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    sidebar: {"position":"right","display":"post","offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
@@ -55,13 +55,13 @@
   };
 </script>
 
-  <meta name="description" content="ProXmoX VE 介绍Proxmox VE是一款套开源的虚拟化管理软件，用户可通过网页的方式来管理服务器上使用 kvm 以及 lxc 技术运行的虚拟机。同时提供了一些先进功能的支持，如集群、HA等。PVE虽然是开源，却是由一个商业公司在运营、更新以及维护。基础安装完工 ProXmoX VE 安装基础准备 16G以上U盘一个(非必须，这个U盘是用来安装PROXMOX的，也可以直接装硬盘上，GEN">
+  <meta name="description" content="ProXmoX VE 介绍Proxmox VE是一款套开源的虚拟化管理软件，用户可通过网页的方式来管理服务器上使用 kvm 以及 lxc 技术运行的虚拟机。同时提供了一些先进功能的支持，如集群、HA等。PVE虽然是开源，却是由一个商业公司在运营、更新以及维护。基础安装完工">
 <meta name="keywords" content="proxmox ve">
 <meta property="og:type" content="article">
 <meta property="og:title" content="利用proxmox ve 搭建家庭服务器">
 <meta property="og:url" content="https://clegea.win/利用proxmox搭建家庭服务器/index.html">
 <meta property="og:site_name" content="ClegeA&#39;s blog">
-<meta property="og:description" content="ProXmoX VE 介绍Proxmox VE是一款套开源的虚拟化管理软件，用户可通过网页的方式来管理服务器上使用 kvm 以及 lxc 技术运行的虚拟机。同时提供了一些先进功能的支持，如集群、HA等。PVE虽然是开源，却是由一个商业公司在运营、更新以及维护。基础安装完工 ProXmoX VE 安装基础准备 16G以上U盘一个(非必须，这个U盘是用来安装PROXMOX的，也可以直接装硬盘上，GEN">
+<meta property="og:description" content="ProXmoX VE 介绍Proxmox VE是一款套开源的虚拟化管理软件，用户可通过网页的方式来管理服务器上使用 kvm 以及 lxc 技术运行的虚拟机。同时提供了一些先进功能的支持，如集群、HA等。PVE虽然是开源，却是由一个商业公司在运营、更新以及维护。基础安装完工">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/1.png">
 <meta property="og:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/2.png">
@@ -86,7 +86,7 @@
 <meta property="og:updated_time" content="2019-08-30T12:43:49.466Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用proxmox ve 搭建家庭服务器">
-<meta name="twitter:description" content="ProXmoX VE 介绍Proxmox VE是一款套开源的虚拟化管理软件，用户可通过网页的方式来管理服务器上使用 kvm 以及 lxc 技术运行的虚拟机。同时提供了一些先进功能的支持，如集群、HA等。PVE虽然是开源，却是由一个商业公司在运营、更新以及维护。基础安装完工 ProXmoX VE 安装基础准备 16G以上U盘一个(非必须，这个U盘是用来安装PROXMOX的，也可以直接装硬盘上，GEN">
+<meta name="twitter:description" content="ProXmoX VE 介绍Proxmox VE是一款套开源的虚拟化管理软件，用户可通过网页的方式来管理服务器上使用 kvm 以及 lxc 技术运行的虚拟机。同时提供了一些先进功能的支持，如集群、HA等。PVE虽然是开源，却是由一个商业公司在运营、更新以及维护。基础安装完工">
 <meta name="twitter:image" content="http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/1.png">
   <link rel="canonical" href="https://clegea.win/利用proxmox搭建家庭服务器/">
 
@@ -183,6 +183,28 @@
       
       
         
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
         <li class="menu-item menu-item-archives">
       
     
@@ -272,7 +294,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="ProXmoX-VE-介绍"><a href="#ProXmoX-VE-介绍" class="headerlink" title="ProXmoX VE 介绍"></a>ProXmoX VE 介绍</h2><p>Proxmox VE是一款套开源的虚拟化管理软件，用户可通过网页的方式来管理服务器上使用 kvm 以及 lxc 技术运行的虚拟机。同时提供了一些先进功能的支持，如集群、HA等。<br>PVE虽然是开源，却是由一个商业公司在运营、更新以及维护。<br>基础安装完工</p>
+        <h2 id="ProXmoX-VE-介绍"><a href="#ProXmoX-VE-介绍" class="headerlink" title="ProXmoX VE 介绍"></a>ProXmoX VE 介绍</h2><p>Proxmox VE是一款套开源的虚拟化管理软件，用户可通过网页的方式来管理服务器上使用 kvm 以及 lxc 技术运行的虚拟机。同时提供了一些先进功能的支持，如集群、HA等。<br>PVE虽然是开源，却是由一个商业公司在运营、更新以及维护。<br>基础安装完工</p><a id="more"></a>
 <h2 id="ProXmoX-VE-安装"><a href="#ProXmoX-VE-安装" class="headerlink" title="ProXmoX VE 安装"></a>ProXmoX VE 安装</h2><h3 id="基础准备"><a href="#基础准备" class="headerlink" title="基础准备"></a>基础准备</h3><ol>
 <li>16G以上U盘一个(非必须，这个U盘是用来安装PROXMOX的，也可以直接装硬盘上，GEN8比较特殊，使用U盘引导比较方便，所以我安装在U盘上)；4G以上U盘一个；</li>
 <li>支持虚拟化技术的CPU；</li>
@@ -461,7 +483,7 @@
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.4.0</div>
 
         
 
@@ -489,6 +511,7 @@
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 <script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
 <script src="/js/schemes/muse.js?v=7.4.0"></script>
+
 <script src="/js/next-boot.js?v=7.4.0"></script>
 
 
