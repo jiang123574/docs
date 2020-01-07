@@ -16,26 +16,26 @@ PVE虽然是开源，却是由一个商业公司在运营、更新以及维护�
 首先去proxmox下载安装包，目前最新版本是5.2-1，推荐使用种子下载，速度会比较快，下载完成后务必使用使用工具进行SHA256校验，防止下载错误
 然后使用软碟通或者rufus之类的工具把下载的ISO文件刻录进4G的U盘（本人使用GEN8的ILO4远程安装，有GEN8的朋友应该知道咋弄）。
 接着把4GU盘和16GU盘插入电脑，BIOS中开启虚拟化支持（具体方法百度，BIOS太多，我就不放图了），一个网口接入路由，使用4GU盘引导启动很快就会进入安装界面。
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/1.png)
+![enter image description here](./1.png)
 此处选择第一项回车，稍微等待一会，进入下图界面
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/2.png)
+![enter image description here](2.png)
 选择 I agree
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/3.png)
+![enter image description here](3.png)
 这里选择你要安装的的硬盘或者U盘，选定后点击Next
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/4.png)
+![enter image description here](4.png)
 这里一般会默认china，如果没有那就输入china，其他默认，点击Next
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/5.png)
+![enter image description here](5.png)
 输入两遍管理密码并输入邮箱，点击Next
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/6.png)
+![enter image description here](6.png)
 这里注意，查看一下是不是你局域网的网段，如果不是，很可能和路由之间网络不通，另外，Hostname这项的格式需为*.*，默认的是无法下一步的，我这里使用PVE.LEN，点击next，等待安装完成
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/7.png)
+![enter image description here](7.png)
 出现如上界面时，说明安装已经完成，点击reboot，重启过程中拔掉U盘，然后设置为你安装的U盘或者硬盘启动，等待重启完成。
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/8.png)
+![enter image description here](8.png)
 出现如上界面时说明安装完成了,用另外一台电脑在浏览器中输入上面的地址进行访问
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/9.png)
+![enter image description here](9.png)
 language选择chinese就可以中文访问啦，用户名输入root，密码为刚才安装时候输的两遍管理密码
 ## ProXmoX VE 初始配置
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/10.png)
+![enter image description here](10.png)
 
 由于proxmox一些功能是需要付费订阅的，虽然可以免费使用，但是每次登陆时候都会弹出如上让你订阅的通知，比较烦，我们这里通过技术手段把它屏蔽掉。
 首先点击确定把它关掉，然后通过winscp打开以下文件 
@@ -43,7 +43,7 @@ language选择chinese就可以中文访问啦，用户名输入root，密码为�
 /usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js 
 ```
 
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/11.png)
+![enter image description here](11.png)
 或者直接在web界面的shell中使用vi、nano等工具编辑找到
 
 ``` 
@@ -86,7 +86,7 @@ reboot
 ## ProXmoX VE 磁盘映射
 
 如果你的proxmox是直接安装在硬盘上的，那已经可以正常使用了，如果你和我一样是安装在U盘的，因为U盘空间比较小，需要弄个硬盘用来安装虚拟机
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/12.png)
+![enter image description here](12.png)
 在磁盘中看下哪个是你要挂载的硬盘，，我这里需要挂载的设备目录为/dev/sdb
 在shell中输入
 
@@ -97,15 +97,15 @@ mkdir /mnt/sdb
 创建sdb文件夹用来给磁盘挂载
 输入fdisk /dev/sdb管理这个硬盘，给它分区
 输入n新建分区
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/13.png)
+![enter image description here](13.png)
 输入p建立主分区
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/14.png)
+![enter image description here](14.png)
 输入1创建一个分区
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/15.png)
+![enter image description here](15.png)
 这里是让输入这个分区的扇区起始位置，我们选择默认，直接回车
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/16.png)
+![enter image description here](16.png)
 分区的扇区结束位置，默认，直接回车，到此就分区完成了，我们输入p查看一下
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/17.png)
+![enter image description here](17.png)
 分区已经完成，目录为/dev/sdb1
 输入w，保存并退出fdisk工具
 输入
@@ -134,8 +134,8 @@ nano /etc/fstab
 保存退出
 这样就不用每次开机mount了
 然后依次点击数据中心-存储-添加-目录
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/18.png)
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/19.png)
+![enter image description here](18.png)
+![enter image description here](19.png)
 ID随意，目录输入刚才挂载的目录，内容都选上，点添加，
 最后点OS查看一下是否正常识别
-![enter image description here](http://ddns.clegea.win:8000/wordpress/wp-content/uploads/2019/02/20.png)
+![enter image description here](20.png)

@@ -1,7 +1,6 @@
-* [简介](/)
+* [简介](./README.md)
 * Proxmox VE 相关
-  * [一. 安装](_posts/利用proxmox搭建家庭服务器.md)
-  * [二. 安装]()
+  * [一. 安装](new/pve/利用proxmox搭建家庭服务器.md)
 * PT相关
   * [制作PT种子](_posts/使用transmission制作PT种子.md)
 * 软件相关
