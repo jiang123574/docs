@@ -4,7 +4,8 @@
 * PT相关
   * [制作PT种子](_posts/使用transmission制作PT种子.md)
 * 软件相关
-  * [软件分享](new/软件分享.md)
+  * [windows软件分享](new/软件分享.md)
+  * [安卓软件下载]()
 * 博客搭建
   * [使用hexo搭建个人博客](_posts/利用hexo+github+coding架设个人博客.md)
   * [使用docsify搭建文档网站](new/docsify.md)
