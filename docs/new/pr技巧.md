@@ -1,0 +1,1 @@
+白嫖版hevc： https://www.microsoft.com/zh-cn/p/hevc-video-extensions-from-device-manufacturer/9n4wgh0z6vhq?irgwc=1&OCID=AID2000142_aff_7808_1378742&tduid=(ir__rfnzm1efvskft1lp0cgpjjqgoe2xl6t6atdn33t300)(7808)(1378742)(lan_article)(c.landian.vip)&irclickid=_rfnzm1efvskft1lp0cgpjjqgoe2xl6t6atdn33t300#activetab=pivot:overviewtab
